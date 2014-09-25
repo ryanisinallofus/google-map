@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2014 Google Inc. All rights reserved. -->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../google-apis/google-apis.html">
+
+<polymer-element name="google-map-latlng" attributes="lat lng latlng">
+    <template>
+        <google-maps-api on-api-load="{{mapApiLoaded}}"></google-maps-api>
+    </template>
+    <script>
+        Polymer('google-map-latlng', {
+            /**
+             * Lat
+             *
+             * @attribute lat
+             * @type string
+             * @default null
+             */
+            lat: null,
+
+            /**
+             * Lng
+             *
+             * @attribute lng
+             * @type string
+             * @default null
+             */
+            lng: null,
+
+            /**
+             * LatLng object
+             *
+             * https://developers.google.com/maps/documentation/javascript/reference#LatLng
+             * @attribute endAddress
+             * @type google.maps.LatLng
+             * @default null
+             */
+            latlng: null,
+
+            mapApiLoaded: function() {
+                this.latlng = new google.maps.LatLng(this.lat, this.lng);
+            }
+
+        });
+    </script>
+</polymer-element>

@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Google Map demo</title>
   <script src="../platform/platform.js"></script>
-  <link rel="import" href="google-map.html">
-  <link rel="import" href="google-map-directions.html">
+  <link rel="import" href="../polymer/polymer.html">
+  <link rel="import" href="./google-map.html">
+  <link rel="import" href="./google-map-directions.html">
+  <link rel="import" href="./google-map-latlng.html">
   <style>
     #controlsToggle {
       position: absolute;
@@ -16,7 +18,7 @@
   </style>
 </head>
 <body fullbleed unresolved>
-
+<google-map-latlng id="my-latlng" lat="47.6097" lng="-122.3331"></google-map-latlng>
 <google-map latitude="37.779" longitude="-122.3892" minZoom="9" maxZoom="11" fit>
   <google-map-marker latitude="37.779" longitude="-122.3892"
                      title="Go Giants!" draggable="true">
@@ -37,6 +39,13 @@
   function toggleControls() {
     gmap.disableDefaultUI = !gmap.disableDefaultUI;
   }
+
+  var myLatLng = null;
+  myLatlng = document.querySelector('#my-latlng');
+  myLatlng.addEventListener('api-load', function(e) {
+      document.querySelector('google-map-directions').startAddress = this.latlng;
+  });
+
 </script>
 </body>
 </html>
